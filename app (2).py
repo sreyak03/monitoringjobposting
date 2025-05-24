@@ -12,7 +12,7 @@ import pandas as pd
 
 st.title("Job Listing Clusters")
 
-df = pd.read_csv('clustered_jobs.csv')
+df = pd.read_csv('clustered_jobs(1).csv')
 clusters = df['Cluster'].unique()
 
 cluster_selected = st.sidebar.multiselect("Select clusters", clusters)
