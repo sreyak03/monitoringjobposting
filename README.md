@@ -1,24 +1,105 @@
-Job Monitoring and Skill-Based Clustering System
-This project automatically scrapes job postings from karkidi.com, clusters them based on required skills using unsupervised machine learning, and notifies users when new jobs match their skill interests.
+Job Posting Classification Based on Required Skills (Hierarchical Clustering)
+This project collects job listings from Karkidi.com and groups them based on required skills using Hierarchical (Agglomerative) Clustering. The aim is to categorize jobs by similar skill sets, which can help users discover opportunities that match their profiles more efficiently.
 
-🚀 Features
- Scrapes latest job postings (title, company, location, required skills)
+Features
+Scrapes job titles, company names, locations, experience levels, summaries, and skills from Karkidi.com.
 
- Clusters jobs using K-Means on TF-IDF vectors of required skills
+Preprocesses the skills data (cleans and tokenizes text).
 
- Trained model saved and reused for classifying new postings
+Applies TF-IDF vectorization on the skills column.
 
- Users can select skill-based clusters to receive job alerts
+Clusters similar job listings using unsupervised learning (Agglomerative Clustering).
 
- Supports automated daily scraping (via scheduler or cron)
+Saves the trained model, vectorizer, and the clustered job data for reuse.
 
- Streamlit dashboard for interactive job exploration
+(Optional) Extendable for sending notifications to users based on skill preferences.
 
- Data Collected
-Each job entry includes:
+(Optional) Automate scraping and clustering on a daily basis.
 
-Job Title
+Setup & Requirements
+Prerequisites
+Python 3.7 or higher
 
+Install required packages using:
+
+bash
+Copy
+Edit
+pip install -r requirements.txt
+Dependencies
+requests
+
+beautifulsoup4
+
+pandas
+
+scikit-learn
+
+joblib
+
+streamlit (optional for UI)
+
+Running the Script
+Use the following command to scrape jobs and perform clustering:
+
+bash
+Copy
+Edit
+python daily_scrape_and_cluster.py
+This will:
+
+Scrape job listings (default: 2 pages)
+
+Clean and process the skills data
+
+Vectorize the skills and apply hierarchical clustering
+
+Save:
+
+The model (model/karkidi_model.pkl)
+
+The vectorizer (model/karkidi_vectorizer.pkl)
+
+The clustered job data (clustered_jobs.csv)
+
+Streamlit Web App (Optional)
+The Streamlit app uses the saved model and data to:
+
+Show job listings grouped by cluster
+
+Filter listings by cluster
+
+(Optional) Notify users when jobs match their skills
+
+Run it locally:
+bash
+Copy
+Edit
+streamlit run app.py
+Automating the Pipeline (Optional)
+To run the scraping and clustering automatically each day:
+
+On Linux/macOS: Set up a cron job
+
+On Windows: Use Task Scheduler
+
+Alternatively, configure a GitHub Actions workflow to run the script and push updates
+
+The Streamlit app will automatically reflect changes when refreshed.
+
+Project Structure
+bash
+Copy
+Edit
+your-repo/
+├── daily_scrape_and_cluster.py   # Handles scraping and clustering
+├── app.py                        # Streamlit app interface
+├── clustered_jobs.csv            # Clustered job output
+├── model/
+│   ├── karkidi_model.pkl         # Trained clustering model
+│   └── karkidi_vectorizer.pkl    # TF-IDF vectorizer
+├── requirements.txt              # Dependencies list
+└── README.md                     # Project documentation
 Company Name
 
 Required Skills
