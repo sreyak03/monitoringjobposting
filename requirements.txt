@@ -1,6 +1,6 @@
-pandas
 streamlit
+pandas
 scikit-learn
-joblib
-nltk
 beautifulsoup4
+requests
+joblib
